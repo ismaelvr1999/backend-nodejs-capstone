@@ -43,7 +43,8 @@ app.use(pinoHttp({ logger }));
 //{{insert code here}}
 
 // Items API Task 2: add the secondChanceItemsRoutes to the server by using the app.use() method.
-//{{insert code here}}
+const secondChanceItemsRoutes = require("./routes/secondChanceItemsRoutes");
+app.use('/api/secondchance/items', secondChanceItemsRoutes); 
 
 // Search API Task 2: add the searchRoutes to the server by using the app.use() method.
 //{{insert code here}}
