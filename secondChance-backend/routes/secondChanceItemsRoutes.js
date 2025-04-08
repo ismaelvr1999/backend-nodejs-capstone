@@ -51,15 +51,14 @@ router.post('/',upload.single('file'), async(req, res,next) => {
         //Step 3: task 3 - insert code here
         let secondChanceItem = req.body;
         //Step 3: task 4 - insert code here
-        const [lastItemQuery,] = await collection.find().sort({'id': -1}).limit(1);
+        const [item,] = await collection.find().sort({'id': -1}).limit(1).toArray();
         secondChanceItem.id = (parseInt(item.id) + 1).toString();
         //Step 3: task 5 - insert code here
         const date_added = Math.floor(new Date().getTime() / 1000);
         secondChanceItem.date_added = date_added
         //Step 3: task 6
         secondChanceItem = await collection.insertOne(secondChanceItem);
-
-        res.status(201).json(secondChanceItem.ops[0]);
+        res.status(201).json(secondChanceItem.acknowledged);
     } catch (e) {
         next(e);
     }

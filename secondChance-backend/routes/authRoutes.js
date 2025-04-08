@@ -69,7 +69,7 @@ router.post('/login', async (req, res) => {
             return res.status(404).json({ error: 'Wrong pasword' });
         }
         // Task 5: Fetch user details from a database
-        const {email:userEmail,name:userName} = user;
+        const {email:userEmail,firstName:userName} = user;
         // Task 6: Create JWT authentication if passwords match with user._id as payload
         let payload = {
             user: {
@@ -112,7 +112,7 @@ try {
         return res.status(404).json({ error: 'User not found' });
     }
     existingUser.updatedAt = new Date();
-    xistingUser.firstName = req.body.name;
+    existingUser.firstName = req.body.name;
     // Task 6: Update the user credentials in the database
     const updatedUser = await collection.findOneAndUpdate({email},{$set:existingUser},{returnDocument:"after"});
     // Task 7: Create JWT authentication with `user._id` as a payload using the secret key from the .env file
