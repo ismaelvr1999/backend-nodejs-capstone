@@ -50,8 +50,7 @@ router.post('/', upload.single('file'), async (req, res, next) => {
     const [item] = await collection.find().sort({ id: -1 }).limit(1).toArray()
     if (item) {
       secondChanceItem.id = (parseInt(item.id) + 1).toString()
-    }
-    else{
+    } else {
       secondChanceItem.id = 1
     }
     // Step 3: task 5 - insert code here
