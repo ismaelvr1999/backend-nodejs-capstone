@@ -48,7 +48,12 @@ router.post('/', upload.single('file'), async (req, res, next) => {
     let secondChanceItem = req.body
     // Step 3: task 4 - insert code here
     const [item] = await collection.find().sort({ id: -1 }).limit(1).toArray()
-    secondChanceItem.id = (parseInt(item.id) + 1).toString()
+    if (item) {
+      secondChanceItem.id = (parseInt(item.id) + 1).toString()
+    }
+    else{
+      secondChanceItem.id = 1
+    }
     // Step 3: task 5 - insert code here
     const dateAdded = Math.floor(new Date().getTime() / 1000)
     secondChanceItem.date_added = dateAdded
